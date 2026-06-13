@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Homem Que Ela Vai Lembrar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF7F2;
+    --white: #FFFFFF;
+    --dark: #1C1814;
+    --body: #3A3530;
+    --muted: #7A7268;
+    --rust: #B84A2E;
+    --rust-light: #D4613E;
+    --border: #DDD5C8;
+    --tan: #FBF5EE;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--dark); font-family: 'Inter', sans-serif; line-height: 1.6; }
+
+  /* HERO */
+  .hero {
+    background: #2C2419;
+    color: #F0E8DC;
+    padding: 64px 24px 56px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: #D4855E; margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    font-weight: 900; line-height: 1.1;
+    max-width: 640px; margin: 0 auto 16px; color: #F7F0E6;
+  }
+  .hero h1 em { font-style: italic; color: #E8A882; }
+  .hero-sub {
+    font-size: 1rem; color: #9A8878;
+    max-width: 440px; margin: 0 auto 32px; line-height: 1.7;
+  }
+  .btn {
+    display: inline-block; background: var(--rust); color: #fff;
+    font-size: 0.95rem; font-weight: 600; padding: 16px 32px;
+    text-decoration: none; border-radius: 2px; transition: background 0.2s;
+  }
+  .btn:hover { background: var(--rust-light); }
+  .price-hint { margin-top: 12px; font-size: 0.8rem; color: #5A5048; }
+
+  /* SEÇÕES */
+  section { padding: 56px 24px; }
+  .inner { max-width: 640px; margin: 0 auto; }
+  .inner-wide { max-width: 760px; margin: 0 auto; }
+
+  .label {
+    display: block; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--rust); margin-bottom: 12px;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+    font-weight: 700; line-height: 1.3;
+    margin-bottom: 24px; color: var(--dark);
+  }
+
+  /* DOR */
+  .dor { background: var(--white); }
+  .dor p { font-size: 0.97rem; line-height: 1.8; color: var(--body); margin-bottom: 14px; }
+  .dor p strong { color: var(--dark); }
+  .quote-box {
+    border-left: 3px solid var(--rust); padding: 16px 20px;
+    background: var(--tan); margin: 24px 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-style: italic; line-height: 1.6; color: var(--dark);
+  }
+
+  /* PRODUTO */
+  .produto { background: var(--cream); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .partes {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px; margin-bottom: 20px;
+  }
+  .parte {
+    background: var(--white); border: 1px solid var(--border);
+    border-top: 3px solid var(--rust); padding: 20px 16px;
+  }
+  .parte-num { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 6px; }
+  .parte h3 { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; color: var(--dark); }
+  .parte p { font-size: 0.84rem; color: var(--muted); line-height: 1.6; }
+  .bonus-box { background: var(--white); border: 1px solid var(--border); padding: 20px 24px; }
+  .bonus-box h3 { font-size: 0.85rem; font-weight: 600; color: var(--rust); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .bonus-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .bonus-list li { font-size: 0.9rem; color: var(--body); padding-left: 18px; position: relative; line-height: 1.5; }
+  .bonus-list li::before { content: '+'; position: absolute; left: 0; color: var(--rust); font-weight: 700; }
+
+  /* DEPOIMENTOS */
+  .depoimentos { background: var(--white); }
+  .depo-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .depo { background: var(--cream); border: 1px solid var(--border); padding: 20px; }
+  .depo-texto { font-size: 0.9rem; line-height: 1.7; color: var(--body); margin-bottom: 12px; font-style: italic; }
+  .depo-autor { font-size: 0.75rem; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* OFERTA */
+  .oferta { background: var(--tan); border-top: 1px solid var(--border); text-align: center; }
+  .oferta h2 { margin-bottom: 8px; }
+  .oferta-sub { font-size: 0.93rem; color: var(--muted); margin-bottom: 28px; }
+  .preco-box { background: var(--white); border: 1px solid var(--border); padding: 28px 24px; margin-bottom: 20px; }
+  .preco-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 8px; }
+  .preco-valor { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; line-height: 1; margin-bottom: 4px; color: var(--dark); }
+  .preco-valor span { font-size: 1.3rem; vertical-align: super; font-weight: 400; }
+  .preco-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 20px; }
+  .garantia { font-size: 0.8rem; color: var(--muted); line-height: 1.65; }
+  .garantia strong { color: var(--body); }
+
+  /* FOOTER */
+  footer { background: var(--white); padding: 28px 24px; text-align: center; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 540px) {
+    .partes { grid-template-columns: 1fr; }
+    .depo-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="eyebrow">Para ele ler. Para ela respirar.</p>
+  <h1>Ela está mudando.<br><em>Você ainda está igual.</em></h1>
+  <p class="hero-sub">23 páginas sobre o que está acontecendo com ela e o que fazer diferente agora.</p>
+  <a href="https://pay.hotmart.com/O106314960X" class="btn">Quero ser o homem que ela vai lembrar</a>
+  <p class="price-hint">Acesso imediato por R$ 37</p>
+</section>
+
+<!-- DOR -->
+<section class="dor">
+  <div class="inner">
+    <span class="label">O problema</span>
+    <h2>Você quer acertar.<br>Mas ninguém te ensinou como.</h2>
+    <p>Ela fala que está com medo. Você responde: <strong>"Vai dar conta sim."</strong> Ela para de falar.</p>
+    <p>Ela está exausta. Você responde: <strong>"Eu também estou cansado."</strong> Ela vira pro lado.</p>
+    <div class="quote-box">"Essa assimetria não é falta de amor. É falta de informação."</div>
+    <p>Ninguém ensinou os homens a responder diferente. E ela vai lembrar de tudo.</p>
+  </div>
+</section>
+
+<!-- PRODUTO -->
+<section class="produto">
+  <div class="inner-wide">
+    <span class="label">O ebook</span>
+    <h2>O Homem Que Ela Vai Lembrar</h2>
+    <div class="partes">
+      <div class="parte">
+        <p class="parte-num">Parte 1</p>
+        <h3>O que está acontecendo com ela</h3>
+        <p>Neurociência da gestação e o que você já viu em casa sem saber nomear.</p>
+      </div>
+      <div class="parte">
+        <p class="parte-num">Parte 2</p>
+        <h3>O pai nasce antes do bebê</h3>
+        <p>O que ela diz e o que está realmente pedindo. As 3 perguntas que mudam qualquer conversa.</p>
+      </div>
+      <div class="parte">
+        <p class="parte-num">Parte 3</p>
+        <h3>A escolha</h3>
+        <p>Plano de 7 dias. Uma ação concreta por dia. Começando hoje.</p>
+      </div>
+    </div>
+    <div class="bonus-box">
+      <h3>Incluso no acesso</h3>
+      <ul class="bonus-list">
+        <li>Guia do Companheiro de Parto — o que fazer e o que nunca falar no dia do parto</li>
+        <li>As 3 perguntas que abrem qualquer conversa difícil com ela</li>
+        <li>A mensagem exata para mandar para ela hoje</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos">
+  <div class="inner-wide">
+    <span class="label">O que dizem</span>
+    <h2>Mulheres que sabem o quanto isso faz falta</h2>
+    <div class="depo-grid">
+      <div class="depo">
+        <p class="depo-texto">"Esse perfil tinha que existir já a muito tempo... como é necessário."</p>
+        <p class="depo-autor">Ana Zanini · @anazanini__</p>
+      </div>
+      <div class="depo">
+        <p class="depo-texto">"Ver um homem falando sobre gestação, parto e pós-parto encheu meu coração. A mãe precisa principalmente do companheiro ao lado."</p>
+        <p class="depo-autor">Fernanda Gabriela · @fernandagabriela12334</p>
+      </div>
+      <div class="depo">
+        <p class="depo-texto">"Estou na 20ª semana e vou passar para meu marido e alguns amigos. É difícil explicar como ele pode ajudar no dia a dia."</p>
+        <p class="depo-autor">Roberta Mansini · @roberta.mansini</p>
+      </div>
+      <div class="depo">
+        <p class="depo-texto">"Extremamente importante esse trabalho. Que inspire muitos homens a serem melhores para suas companheiras."</p>
+        <p class="depo-autor">@prislocollage</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section class="oferta">
+  <div class="inner">
+    <span class="label">Acesso imediato</span>
+    <h2>Ela não vai lembrar de tudo.<br>Mas vai lembrar de você.</h2>
+    <p class="oferta-sub">O ebook completo, o plano de 7 dias e os 3 bônus.</p>
+    <div class="preco-box">
+      <p class="preco-label">Valor hoje</p>
+      <p class="preco-valor"><span>R$</span> 37</p>
+      <p class="preco-desc">Acesso imediato. Pague uma vez.</p>
+      <a href="https://pay.hotmart.com/O106314960X" class="btn">Quero ser o homem que ela vai lembrar</a>
+    </div>
+    <p class="garantia"><strong>Garantia de 7 dias.</strong> 100% do valor devolvido se não gostar. Sem pergunta, sem burocracia.</p>
+  </div>
+</section>
+
+<footer>
+  <p>@partodehomem &nbsp;·&nbsp; Leonardo Magalhães &nbsp;·&nbsp; <a href="https://www.instagram.com/partodehomem" target="_blank">Suporte via Instagram</a></p>
+</footer>
+
+</body>
+</html>
